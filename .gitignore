@@ -1,0 +1,10 @@
+.DS_Store
+.vscode
+*.exe
+*.com
+*.obj
+*.bak
+*.lib
+*.lst
+*.ice
+*.zip
