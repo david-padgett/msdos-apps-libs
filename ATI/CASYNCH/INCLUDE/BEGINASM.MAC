@@ -1,0 +1,200 @@
+;
+;   BEGINASM.MAC  --  Header file to set up segments and procedures.
+;
+;   Version 5.00 (C)Copyright Blaise Computing Inc. 1987
+;
+;   Version 5.01  August 20, 1987  MEE
+;		  Added beginDSeg and endDSeg to define data segments.
+;
+;   Version 2.02  March 11, 1988 PKM
+;		  Supplanted support for Microsoft C 5.00 with support
+;		  for Microsoft C 4.00.
+
+include   compiler.mac		   ; Specifies the C compiler and
+				   ; memory model.
+
+ShortP equ 0			   ; Short Pointer
+LongP  equ 1			   ; Long Pointer
+
+if BTINY
+    __TINY__ equ 1		   ; For TURBO C's RULES.ASI
+    CodeT equ ShortP		   ; CodeT -- Type of code (long or short)
+    DataT equ ShortP		   ; DataT -- Type of data (long or short)
+endif
+
+if BSMALL
+    __SMALL__ equ 1		   ; For TURBO C's RULES.ASI
+    CodeT equ ShortP		   ; CodeT -- Type of code (long or short)
+    DataT equ ShortP		   ; DataT -- Type of data (long or short)
+endif
+
+if BMEDIUM
+    __MEDIUM__ equ 1		   ; For TURBO C's RULES.ASI
+    CodeT equ LongP		   ; CodeT -- Type of code (long or short)
+    DataT equ ShortP		   ; DataT -- Type of data (long or short)
+endif
+
+if BCOMPACT
+    __COMPACT__ equ 1		   ; For TURBO C's RULES.ASI
+    CodeT equ ShortP		   ; CodeT -- Type of code (long or short)
+    DataT equ LongP		   ; DataT -- Type of data (long or short)
+endif
+
+if BLARGE
+    __LARGE__ equ 1; For TURBO C's RULES.ASI
+    CodeT equ LongP; CodeT -- Type of code (long or short)
+    DataT equ LongP; DataT -- Type of data (long or short)
+endif
+
+if BHUGE
+    __HUGE__ equ 1 ; For TURBO C's RULES.ASI
+    CodeT equ LongP; CodeT -- Type of code (long or short)
+    DataT equ LongP; DataT -- Type of data (long or short)
+endif
+
+
+longData  equ (DataT eq LongP)
+longProg  equ (CodeT eq LongP)
+
+shortData equ (DataT eq ShortP)
+shortProg equ (CodeT eq ShortP)
+
+sizeChar       equ 1
+sizeCharOnStk  equ 2
+sizeDouble     equ 8
+sizeEnum       equ 2
+sizeFloat      equ 4
+sizeInt        equ 2
+sizeLong       equ 4
+sizeLongDouble equ 8
+sizeShort      equ 2
+
+if longData
+    sizeDPointer equ 4
+else
+    sizeDPointer equ 2
+endif
+
+if longProg
+    sizeCPointer equ 4
+else
+    sizeCPointer equ 2
+endif
+
+beginCseg macro sname	       ;;Begin code macro.
+    if shortProg
+	_TEXT segment byte public 'code'
+	assume cs:_TEXT
+    else
+	sname&_TEXT segment byte public 'code'
+	assume cs:sname&_TEXT
+    endif
+    endm
+
+endCseg macro sname	       ;;End code macro.
+    if shortProg
+	_TEXT ends
+    else
+	sname&_TEXT ends
+    endif
+    endm
+
+beginDSeg macro sname	       ;;Start a data segment
+    if BHUGE
+	sname&_DATA segment word public 'DATA'
+    else
+	_DATA segment word public 'DATA'
+    endif
+    endm
+
+endDSeg macro sname	       ;;End a data segment
+    if BHUGE
+	sname&_DATA ends
+    else
+	_DATA ends
+    endif
+    endm
+
+
+if MSC400
+    if longProg 		   ; Set up parameter offset.
+	stkoff equ 6
+    else
+	stkoff equ 4
+    endif
+
+    beginMod macro mname	   ;;Begin module macro.
+	name mname
+	endm
+
+    endMod macro mname		   ;;End module macro.
+	; end module mname
+	endm
+
+    beginProc macro pname	   ;;Begin procedure macro.
+	public _&pname
+	if longProg
+	    _&pname proc far
+	else
+	    _&pname proc near
+	endif
+	endm
+
+    endProc macro pname 	   ;;End procedure macro.
+	_&pname endp
+	endm
+endif
+
+
+if TC100
+    include rules.asi
+
+    if longProg 		   ; Set up parameter offset.
+	stkoff equ aParam
+    else
+	stkoff equ nearParam
+    endif
+
+    beginMod macro mname	   ;;Begin module macro.
+	name mname
+	endm
+
+    endMod macro mname		   ;;End module macro.
+	; end module mname
+	endm
+
+    beginProc macro pname	   ;;Begin procedure macro.
+	PubProc@ pname,NOT_PASCAL
+	endm
+
+    endProc macro pname 	   ;;End procedure macro.
+	EndProc@ pname,NOT_PASCAL
+	endm
+endif
+
+
+beginProg macro zname		   ;;Generic begin program macro.
+    beginMod zname
+    beginCseg zname
+    beginProc zname
+    endm
+
+endProg macro zname		   ;;Generic end program macro.
+    endProc zname
+    endCseg zname
+    endMod zname
+    endm
+
+
+popff  macro			   ;; Simulate POPF instruction w/o bugs
+	local	do_call, do_iret
+	jmp	short do_call
+
+do_iret:
+	iret			   ;; Pop IP, CS, flags.
+
+do_call:
+	push   cs		   ;; Push CS
+	call   do_iret		   ;; Push IP & jump.
+	endm
+

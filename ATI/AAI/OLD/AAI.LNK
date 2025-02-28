@@ -1,0 +1,12 @@
+e:\DevTools\BC4\Lib\c0l.obj \Dev\DOS\Lib\C\CAsynch\asynch.obj +
+aai0.obj aai1.obj aai2.obj aai3.obj +
+,aai.exe,,+
+\Dev\DOS\Lib\C\CAsynch\TurboC\asy_tcl.lib \Dev\DOS\Lib\ASM\Cursor\cursor.lib +
+\Dev\DOS\Lib\C\MSDos\dos.lib \Dev\DOS\Lib\ASM\KB\kb.lib +
+\Dev\DOS\Lib\C\Dir\Dir.lib \Dev\DOS\Lib\C\List\list.lib +
+\Dev\DOS\Lib\C\Menu\menu.lib \Dev\DOS\Lib\C\Port\port.lib +
+\Dev\DOS\Lib\ASM\Printer\printer.lib \Dev\DOS\Lib\C\String\string.lib +
+\Dev\DOS\Lib\C\Text\text.lib \Dev\DOS\Lib\C\Text_Int\text_int.lib +
+e:\DevTools\BC4\Lib\emu.lib e:\DevTools\BC4\Lib\mathl.lib +
+e:\DevTools\BC4\Lib\cl.lib
+

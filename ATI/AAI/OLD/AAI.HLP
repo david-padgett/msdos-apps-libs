@@ -1,0 +1,441 @@
+:PINFO:Introduction
+     ATI's Acudairy Interface, or AAI, was written to allow easy access to the
+Allen Bradley SLC 500 and the Basic Module which are located in the controller
+which was designed and built by Jedco Automation Corporation.  With AAI, you
+will be able to enter and save timing values in the SLC 500.  The SLC 500 will
+then use these timing values to control the benders on the factory floor.
+:ADDRS:Names And Addresses
+            All inquiries should be directed to
+
+     Hardware (Controller):
+
+         Analytical Technologies, Inc.~
+	  David X, President~
+	  XXXX Holt Street~
+	  Westfield, NY  14787~
+	  (800) 345-xxxx
+
+     Software (PC):
+
+	 Analytical Technologies, Inc.~
+	  Jason X, Project Manager~
+	  xxx Tracy Dr. #x~
+	  Bloomington, IL  61704~
+	  (309) 829-xxxx
+
+	 CSFX Computing Services~
+	  David Padgett, Programmer~
+	  xxxx Oak Park Village Dr. #xx~
+	  St. Louis Park, MN  55426~
+	  (612) 935-xxxx
+:NAVIG:Navigation Through The System
+     Menus, or a list of two or more options displayed on the screen, allow
+you to easily make selections and operate the "ATI's Acudairy Interface", or
+AAI, program.
+
+     The list of options displayed in a menu may be selected by moving the
+highlight bar to the desired menu option and then pressing ENTER.  Only one
+option in a menu may be highlighted at a time.
+
+     There are two types of menus in AAI.  The first, a horizontal menu,
+displays all of its options on one line on the screen.  The first option is
+the leftmost option on the screen, and the last option is the rightmost
+option on the screen.  The following keys are active when a horizontal
+menu is active:
+
+  Left Arrow  - Move the highlight bar to the left~
+   Tab         - Move the highlight bar to the left~
+   Right Arrow - Move the highlight bar to the right~
+   Shift-Tab   - Move the highlight bar to the right~
+   Home        - Move the highlight bar to the first menu~
+                 option~
+   End         - Move the highlight bar to the last menu~
+                 option~
+   Enter       - Select the menu option which is~
+                 currently highlighted
+
+     The second type of menu in AAI is the vertical menu.  The vertical menu
+displays all of its options in the same column.  The first option is the
+option on the top, and the last option is the option on the bottom.  The
+following keys are active when a vertical menu is active:
+
+  Up Arrow   - Move the highlight bar up~
+   Down Arrow - Move the highlight bar down~
+   Home       - Move the highlight bar to the first menu~
+                option~
+   End        - Move the highlight bar to the last menu~
+                option~
+   Enter      - Select the menu option which is~
+                currently highlighted
+
+     One other key which has the same function regardless of where you are at
+in the program is the Escape key.  At any time, you may press Escape to return
+to the Main Menu.  By pressing the Escape key, you also cancel whatever function
+you were performing.
+:CONFG:Configuring AAI
+     Command-line switches are used to configure AAI.  Below is a list
+of command-line switches that AAI currently supports:
+
+  COLOR - Start AAI in color mode, should be used only~
+           with color systems~
+   MONO  - Start AAI in monochrome mode, should be used~
+           only with mono systems~
+   LCD   - Start AAI in monochrome mode, should be used~
+           only with black and white LCD laptop/notebook~
+           systems~
+   COM1  - Start AAI using communications port 1, or COM1~
+   COM2  - Start AAI using communications port 2, or COM2
+
+   Below are several examples demonstrating how command-line switches are used
+with AAI.  All examples assume that DOS is currently active and that the
+DOS prompt is being displayed.  In addition, the program AAI must be in the
+current directory:
+
+  Example #1 - Start AAI in color mode using~
+                communications port 1 on a~
+                color desktop computer
+
+      AAI /COLOR /COM1
+
+  Example #2 - Start AAI in LCD mode using communications~
+                port 1 on a laptop PC
+
+      AAI /LCD /COM1
+
+  Example #3 - Start AAI in monochrome mode using~
+                communications port 2 on an old~
+                PC with a monochrome monitor
+
+      AAI /MONO /COM2
+:MAINM:Main Menu
+     The Main Menu, which is a horizontal menu, is located on the top line of
+the screen.   From the Main Menu, you may access all of the major functions of
+in AAI.  The Main Menu allows you to directly access the File Menu, Edit Menu,
+Reports Menu, Communications Menu, and Help Menu.
+:FILEM:File Menu
+     The File Menu, which is a vertical menu, is the first option on the Main
+Menu.  The File Menu allows you to perform functions on the timing data
+files.  From the File Menu, you may load, erase, save, rename, and delete
+timing data files.  You may also exit AAI from this menu.
+:LODFM:File Menu - Load Option
+     The 'Load' option in the File Menu is used to load existing timing data
+files into memory from disk.  Existing files are those files which have been
+previously saved using the 'Save' or 'Save As' options in the File Menu.
+
+     When selected, you will be presented with a list of available files.  Use
+the Up and Down Arrow Keys to maneuver the highlight bar, and press Enter to
+select a timing data file.
+
+     An arrow pointing up in the upper right corner of the file list window
+indicates that more files may be viewed by repeatedly pressing the Up Arrow.
+An arrow pointing down in the lower right corner of the file list window
+indicates that more files may be viewed by repeatedly pressing the Down Arrow.
+
+     The 'Load' option may also be accessed by pressing F2 while either the
+Main Menu or any sub-menu is active.
+:NEWFM:File Menu - New Option
+     The 'New' option in the File Menu is used to erase the set of timing values
+which currently resides in the system.  A timing data file resides in memory
+when either one was loaded using the 'Load' option in the File Menu, or one
+was entered into the system via the 'Edit' option in the Edit Menu.
+
+     Using 'New' does not remove timing data files which have been saved using
+'Save' or 'Save As' options of the File Menu.
+
+     The 'New' option should only be used when the operator wishes to remove a
+set of timing values so that a new set of timing values may be entered into
+the system editor.
+:SAVFM:File Menu - Save Option
+     The 'Save' option in the File Menu is used to save the set of timing values
+which currently resides in the system.  'Save' creates a disk file and places
+the entire contents of the system editor into that file.
+
+     When a new set of timing values is entered into the system editor, the set
+does not possess a name.  Therefore, when a new set of timing values is saved,
+you will be prompted to enter a file name.  The file name may be up to 8
+characters in length.  Do not place spaces in between the characters in the file
+name, since that type of name is not a legal file name to the system.
+
+     When a timing data file is loaded from disk using the 'Load' option in the
+Main Menu, the set possesses a name.  The system remembers this name while the
+set of timing values is in the system editor.  Therefore, you are not required
+to enter a file name when saving the set.  The system will use the name of the
+set of timing values when saving the set in a data file.
+
+     The 'Save' option may also be directly accessed by pressing F3 in the Main
+Menu, in any sub-menu, and while in the system editor (the 'Edit' option in the
+Edit Menu.
+:SVAFM:File Menu - Save As Option
+     The 'Save As' option in the File Menu is identical to the 'Save' option in
+the File Menu, except that you will always be prompted to enter a file name into
+the system.   Please refer to the 'Save' option in the File Menu for a complete
+description of the save function.
+
+     The 'Save As' option should only be used when it is necessary to specify
+an alternate file name.  For example, if you load an existing set of timing
+values into the system using the 'Load' option in the Main Menu, and then make
+modifications to the set, you might want to use 'Save As' when saving the
+modified set so that you do not destroy the original.
+:DELFM:File Menu - Delete Option
+     The 'Delete' option in the File Menu is used to permanently remove timing
+data files from the system.  Use this option with extreme caution.
+
+     When selected, the 'Delete' option will present you with a list of timing
+data files identical to the list displayed in the 'Load' option in the File
+Menu.  Use the Up and Down Arrow keys to select the file that you wish to
+delete, and then press Enter.  You will then be asked if you would like to
+delete the file, select Yes only if you wish to delete the data file, otherwise,
+select No or press Escape.  This Yes/No prompt is a safety feature only.  Please
+use extreme caution when using the 'Delete' option.
+:RENFM:File Menu - Rename Option
+     The 'Rename' option in the File Menu is used to change the name of a set
+of timing values that has been saved using the 'Save' or 'Save As' options of
+the File Menu.  You will be prompted to enter a new file name.
+
+     The 'Rename' option is useful for giving more meaningful names to timing
+data files.
+:QUIFM:File Menu - Quit Option
+     The 'Quit' option in the File menu allows you to exit from the AAI program
+to the previous environment.  Most likely, you will be placed back into MS-DOS,
+MS-Windows, or some type of program selection menu.
+
+     When selected, the 'Quit' option will present you with a prompt asking you
+if you would like to exit the program.  Select Yes if you desire to exit the
+program, otherwise, select No or press Escape.
+
+     The 'Quit' option may also be accessed from the Main Menu by pressing the
+Escape key.
+:EDITM:Edit Menu
+     The Edit Menu, which is a vertical menu, may be accessed by selecting the
+second option on the Main Menu.  The Edit Menu allows you to enter the system
+editor.  Once in the system editor, you may create a new set of timing values
+or modify an existing set of timing values.  You may also mark or unmark fields
+within the system editor.
+:EDTEM:Edit Menu - Edit Option
+     The 'Edit' option in the Edit Menu allows you to enter the system editor.
+Once in the system editor, you may either alter the contents of a set of timing
+values which you loaded using the 'Load' option in the File Menu, or, if no set
+of timing values is loaded, you may create a new set of timing values.
+
+     The following keys are active while in the system editor:
+
+       Up Arrow     - Move up one line~
+        Down Arrow   - Move down one line~
+        Left Arrow   - Move left one column~
+        Shift-Tab    - Move left one column~
+        Right Arrow  - Move right one column~
+        Enter        - Move right one column~
+        Tab          - Move right one column~
+        Control-Home - Go to the first field~
+        Control-End  - Go to the last field~
+        Delete       - Delete character under cursor~
+        Backspace    - Delete character left of cursor
+
+     There are 7 different types of fields in the system editor.  The first
+field is the 'Part Number', or 'PN' field.  It is the first field on the top
+row of the system editor.  This field is 16 characters in length.  You may enter
+either letters or numbers into this field.
+
+     The second field is the 'Valve Pack Number', or 'VPN' field.  It is
+the field which is second from the left on the top row of the system editor.
+This is a numeric field, only numbers may be entered into it.  In addition, it
+must contain a value that is between 0 and 4095.  No other value will accepted.
+This field may also not be modified once a value has been entered into it.
+
+     The third field is the 'Multiple Sequence Number', or 'MSN' field.  It is
+the middle field on the top row of the system editor.  This is a numeric field,
+only numbers may be entered into it.  In addition, it must contain a value
+between 1 and 4.  No other value will accepted.
+
+     The fourth field is the 'Last Bin Sensor', or 'LBS' field.  It is the field
+which is second from the right on the top row of the system editor.  This is a
+numeric field, only numbers may be entered into it.  In addition, it must
+contain a value between 0 and 3275.  No other value will be accepted.  This
+field must also be greater than or equal to the largest 'Valve Advance' field,
+it must be smaller than the 'Total Cycle Time' field, and it must be smaller
+than the largest 'Valve Retract' field.
+
+     The fifth field is the 'Total Cycle Time' field.  It is the last field on
+the top row of the system editor.  This is a numeric field, only numbers may be
+entered into it.  In addition, it must contain a value between 1 and 3276.  No
+other values will be accepted.  This field must also be greater than or equal
+to the largest 'Valve Retract' field, it must be larger than the 'Last Bin
+Sensor' field, and it must be larger than the largest 'Valve Advance' field.
+
+     The first 5 fields will always be visible in the system editor.  Since
+there are more of the remaining fields than will fit on the screen, the
+remaining fields may or may not be visible on the system editor.  To make them
+visible, use the Up and Down Arrow keys to scroll through these fields.
+
+     The remaining rows are all numbered.  Each of the remaining rows
+corresponds to a number on the left-hand side of the screen.  Each row is made
+up of 5 columns, and each column contains 2 fields.  These 2 fields are the
+'Valve Advance' and 'Valve Retract' fields.  Therefore, there are 5 sets of
+'Valve Advance' and 'Valve Retract' fields per row.  There are a total of 8
+numbered rows, therefore, there are 80 'Valve Advance' and 80 'Valve Retract'
+fields in the system editor.
+
+     The sixth field is the 'Valve Advance' field.  There are actually 80 of
+these fields in the system editor, but they all behave identically.  The 'Valve
+Advance' fields are numeric fields, only numbers may be entered into them.  In
+addition, they must contain a number between 0 and 3275.  No other values will
+be accepted.  The 'Valve Advance' field in each column of each row must be
+smaller than its corresponding 'Valve Retract' field, which is the field to the
+immediate right of the 'Valve Advance' field.  The current value in the 'Valve
+Advance' field may be incremented or decremented by entering a plus (+) or minus
+(-) before the increment or decrement number.  Incrementing or decrementing a
+'Valve Advance' field also increments or decrements by the same amount all of
+the 'Valve Advance' and 'Valve Retract' fields that are greater than or equal
+to it and which occur after it in the system editor.
+
+     The seventh field is the 'Valve Retract' field.  There are actually 80 of
+these fields in the system editor, but they all behave identically.  The 'Valve
+Retract' fields are numeric fields, only numbers may be entered into them.  In
+addition, they must contain a number between 1 and 3276.  No other values will
+be accepted.  The 'Valve Retract' field in each column of each row must be
+greater than its corresponding 'Valve Advance' field, which is the field to the
+immediate left of the 'Valve Retract' field.  The current value in the 'Valve
+Retract' field may be incremented or decremented by entering a plus (+) or minus
+(-) before the increment or decrement number.  Incrementing or decrementing a
+'Valve Retract' field also increments or decrements by the same amount all of
+the 'Valve Advance' and 'Valve Retract' fields that are greater than or equal
+to it and which occur after it in the system editor.
+:MAREM:Edit Menu - Mark Option
+     The 'Mark' option in the Edit Menu allows you to mark a field.  By marking
+a field, you are informing AAI that this field has at some point been sent to
+the Basic Module using the 'Send' option in the Communications Menu.  In
+addition, you are informing AAI that the field being marked is correct and
+therefore does not need to be re-sent to the Basic Module.  Only the 'Valve
+Advance' and 'Valve Retract' fields should be marked.  Marking any of the other
+fields has no effect during a transmission to the Basic Module.
+
+     The 'Mark' option may also be accomplished by pressing F5 from within the
+system editor.  To mark a field using F5, place the cursor in the field you
+wish to mark, and then press F5.
+
+     Marking a field that is already marked has no effect.
+:CLEEM:Edit Menu - Clear Option
+     The 'Clear' option in the Edit Menu allows you to unmark a field.  Simply
+put, this reverses the effect of the 'Mark' option in the Edit Menu.
+
+     The 'Clear' option may also be accomplished by pressing F6 from within the
+system editor.  To clear a field using F6, place the cursor in the field you
+wish to clear, and then press F6.
+
+     Clearing a field that is not marked has no effect.
+:REPTM:Reports Menu
+     The Reports Menu, which is a vertical menu, may be accessed by selecting
+the third option on the Main Menu.  The Reports Menu allows you to print either
+the 'Data Dump' report or the 'Available Configurations' report.
+:DDPRM:Reports Menu - Data Dump Option
+     The 'Data Dump' option in the Reports Menu allows you to produce a
+hardcopy of the set of timing values which is currently in the system editor.
+
+     You should create a hardcopy of each of the timing value data files for
+both reference and safety reasons.  If, for some reason, a timing value data
+file is lost, it would be simple to re-create it from the 'Data Dump' report.
+
+     Before using this option, make sure that your printer is on-line, and then
+answer yes to the 'Is your printer on-line' question.  Answer no or press the
+Escape key if your printer is not on-line or if you do not want to print the
+report.
+
+     Note:  If AAI detects a problem with you printer, such as it not being
+turned on and/or on-line, no hardcopy will be produced.
+:ACGRM:Reports Menu - Available Configurations Option
+     This 'Available Configurations' option in the Reports Menu allows you to
+produce a hardcopy listing of all the timing value data files currently
+available to the system.
+
+     You should create a hardcopy of the all of the timing value data files
+currently in the system for reference purposes.
+
+     Before using this option, make sure that your printer is on-line, and then
+answer yes to the 'Is your printer on-line' question.  Answer no or press the
+Escape key if your printer is not on-line or if you do not want to print the
+report.
+
+     Note:  If AAI detects a problem with you printer, such as it not being
+turned on and/or on-line, no hardcopy will be produced.
+:COMMM:Communications Menu
+     The Communications Menu, which is a vertical menu, may be accessed by
+selecting the fourth option on the Main Menu.  The Communications Menu allows
+you to access the Basic Module.  From the Communications Menu, you may send or
+receive a set of timing values, or view the Basic Module as it works.
+:SNDCM:Communications Menu - Send Option
+     The 'Send' option of the Communications Menu allows you to transmit to the
+Basic Module a set of timing values.  The set of timing values sent to the
+Basic Module is always the set which is currently loaded into the system editor.
+Therefore, you must either create a set of timing values or load an existing set
+of timing values before you attempt to send the set to the Basic Module.
+
+     When selected, you will be asked to enter two values.  The first value is
+the Unit Number.  The Unit Number must be a number between 1 and 4.  In
+addition, the Unit Number must be either 1, 2, 3, or 4 when you are transmitting
+only 20 'Valve Advance' and 'Valve Retract' numbers; the Unit Number must be
+either 1 or 3 when you are transmitting only 40 'Valve Advance' and 'Valve
+Retract' numbers; the Unit Number must be 1 if you are transmitting either 60 or
+80 'Valve Advance' and 'Valve Retract' numbers.
+
+     You must also tell AAI whether or not it should inform the Basic Module to
+make the values you are transmitting permanent.  If you enter Y, the values you
+transmit will be permanent, if you enter N, the values will not be permanent.
+
+     After you have answered these two questions, AAI will begin the
+transmission.
+
+     The 'Send' option of the Communications Menu may also be accessed directly
+from the Main Menu by pressing F8.
+
+     Note:  AAI was specifically designed to interact with only one program on
+the Basic Module.  If that program is not active at the time you attempt to
+transmit data to the Basic Module, unpredictable results may occur.  Please read
+the documentation supplied with that software before attempting to transmit data
+to the Basic Module.
+:RECCM:Communications Menu - Receive Option
+     The 'Receive' option in the Communications Menu allows you to download a
+set of timing values from the Basic Module/SLC 500.  Before you start the
+receive process, you must first clear out the system editor using the 'New'
+option in the File Menu, then you must enter the 'Valve Pack Number' field (VPN)
+and the 'Multiple Sequence Number' field (MSN) of the set of timing values that
+you wish to download into the system editor.
+
+     The 'Receive' option of the Communications Menu may also be accessed
+directly from the Main Menu by pressing F10.
+
+     Note:  AAI was specifically designed to interact with only one program on
+the Basic Module.  If that program is not active at the time you attempt to
+transmit data to the Basic Module, unpredictable results may occur.  Please read
+the documentation supplied with that software before attempting to transmit data
+to the Basic Module.
+:TERCM:Communications Menu - Terminal Option
+     The 'Terminal' option of the Communications Menu allows you to view the
+output of the Basic Module while it is processing.  This feature is currently
+not supported by the Basic Module software.
+:HELPM:Help Menu
+     The Help Menu, which is a vertical menu, may be accessed by selecting the
+last option in the Main Menu.  The Help Menu allows you to access the help file
+created for AAI.  You may get an index of the help available, access
+information about the authors of this program, or print the User's Manual.
+:INDHM:Help Menu - Index Option
+     The 'Index' option in the Help Menu allows you to view all of the help
+topics available in AAI.  Use the Up and Down Arrow keys to maneuver the
+highlight bar, and then press Enter to view a topic.  The word 'More' and an
+arrow pointing up in the upper right-hand corner of the screen indicates that
+more topics may be viewed by pressing the Up Arrow key; the word 'More' and an
+arrow pointing down in the lower right-hand corner of the screen indicates that
+more topics may be viewed by pressing the Down Arrow key.
+:ABOHM:Help Menu - About Option
+     The 'About' option in the Help Menu allows you to view information about
+the program.
+:PRIHM:Help Menu - Print AAI Users Manual
+     The 'Print' option in the Help Menu allows you to print a hardcopy of the
+User's Manual.
+
+     Before using this option, make sure that your printer is on-line, and then
+answer yes to the 'Is your printer on-line' question.  Answer no or press the
+Escape key if your printer is not on-line or if you do not want to print the
+User's Manual.
+
+     Note:  If AAI detects a problem with you printer, such as it not being
+turned on and/or on-line, no hardcopy will be produced.

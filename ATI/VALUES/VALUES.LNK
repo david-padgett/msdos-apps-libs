@@ -1,0 +1,6 @@
+c:\BorlandC\Lib\c0l.obj +
+values.obj +
+,values.exe,,+
+..\..\Lib\ASM\KB\kb.lib +
+c:\BorlandC\Lib\emu.lib c:\BorlandC\Lib\mathl.lib +
+c:\BorlandC\Lib\cl.lib

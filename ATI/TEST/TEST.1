@@ -1,0 +1,73 @@
+
+#include <dos.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "\dev\dos\lib\c\kb\kb.h"
+
+int main(int argc, char * argv[]) {
+
+   unsigned int x;
+   unsigned int base = 0x300;
+   unsigned int increment = 8;
+   unsigned int outputValue = 0;
+   char         str[80];
+   BOOLEAN      pause = FALSE;
+   BOOLEAN      exitFlag = FALSE;
+   BOOLEAN      inputOnly = TRUE;
+
+   while (!exitFlag) {
+      if (KB_Preview() != 0) {
+         switch (KB_Preview()) {
+            case KB_F1 :
+               inputOnly = !inputOnly;
+               break;
+            case KB_F2 :
+               increment = (increment == 8) ? 1 : 8;
+               break;
+            case KB_TAB :
+               outputValue++;
+               break;
+            case KB_SHIFT_TAB :
+               outputValue--;
+               break;
+            case KB_SPACE :
+               pause = !pause;
+               break;
+            case KB_ESC :
+               exitFlag = TRUE;
+               break;
+            case KB_PGUP :
+            case KB_GRAY_PGUP :
+               base += increment;
+               break;
+            case KB_PGDN :
+            case KB_GRAY_PGDN :
+               base -= increment;
+               break;
+            default :
+               break;
+         }
+         KB_Read();
+      }
+
+      if (!pause) {
+         if (inputOnly) {
+            str[0] = '\0';
+         }
+         else {
+            sprintf(str, "out=%5.5u", outputValue);
+         }
+         for (x = 0; x < increment; x++) {
+            if (!inputOnly) {
+               outportb(x + base, outputValue);
+            }
+            printf("%3.3x=%3.3u ", x + base, (int) inportb(x + base));
+         }
+         printf("%s\n", str);
+      }
+   }
+
+   return (0);
+
+}
