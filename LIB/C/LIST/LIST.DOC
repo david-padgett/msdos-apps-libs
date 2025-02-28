@@ -1,0 +1,376 @@
+LIST Module Requirements
+
+   Goals
+
+      o Create an enhanced list manager.
+      o Virtual memory will be used.
+      o The list can reside in main memory or on disk while active.
+      o The list can be saved to and retrieved from a disk file.
+      o In-order and reverse-order traversals.
+
+   Virtual Memory
+
+      The list manager will utilize virtual memory.  The list may reside in
+      main memory, on disk.  If the list is to reside in main memory
+      and at some point can no longer be contained in main memory, either
+      because it has been completely used up or because a pre-determined
+      maximum amount of it has been used up, additional memory needed to
+      contain the list will be allocated from a disk file.  Alternatively,
+      the list may completely reside in a buffered disk file.
+
+   List Access Types
+
+      typedef enum _list_access_method_set {FIRST = -5L,
+                                            LAST = -4L,
+                                            NEXT = -3L,
+                                            PREVIOUS = -2L,
+                                            KEYED = -1L,
+                                            CURRENT = 0L} LIST_ACCESS_METHOD;
+
+   Operations
+
+      1.  Constructor(LIST *list, size_t element_size, char *name, LIST_TYPE type, size_t buffer_size)
+
+         Description
+
+            Creates a list.  A new list is created and initialized.
+
+         Parameters
+
+            list         - The list to initialize.
+            element_size - The size, in bytes, of the elements that will be
+                           placed in the list.
+            type         - The type of list to create, MEMORY (temporary) or
+                           DISK (permanent).
+            name         - The path and name of the list if its type is DISK.
+            buffer_size  - The maximum amount of main memory that the list
+                           may use.  If this limit is reached, any additional
+                           memory will be obtained from disk.
+
+      2.  Destructor(LIST *list)
+
+         Description
+
+            Destroys a list previously initialized with the constructor
+            operation.  If the list is a permanent disk file, it is saved to
+            disk.
+
+         Parameters
+
+            list - The list to destroy.
+
+      3.  Insert(LIST *list, LIST_ACCESS_METHOD method, void *data, int (*comparison_function)(void *obj1, void *obj2))
+
+         Description
+
+            Adds a single element to a list previously initialized with the
+            constructor operation.  A new element may be inserted using one
+            of the following methods :
+
+            FIRST    - The element becomes the first element in the list.
+            LAST     - The element becomes the last element in the list.
+            NEXT     - The element becomes the next element in the list
+                       relative to the current position in the list.
+            PREVIOUS - The element becomes the previous element in the list
+                       relative to the current position in the list.
+            KEYED    - The element is inserted at a position determined by
+                       a user-defined function.  Inserting an element via
+                       the KEYED methods allows lists to be built in an
+                       ordered manner.
+            CURRENT  - The element becomes the current element in the list
+                       relative to the current position in the list.
+            n        - The element becomes the nth absolute element of the
+                       list.
+
+         Parameters
+
+            list                - The list to insert an element into.
+            method              - The method of insertion.
+            data                - The element to be inserted.
+	    comparison_function - The user-defined comparison function used
+                                  for the keyed insertion method.
+                                  Expects : obj1 = An exact copy of the
+                                                   parameter data.
+                                            obj2 = The current element in
+                                                   the list.
+                                  Returns : A value less than zero if obj1
+                                            comes before the key found in
+                                            obj2, a value of zero if obj1
+                                            matches the key found in obj2,
+                                            or a value greater than zero if
+                                            obj1 comes after the key found
+                                            in obj2.
+
+      4.  Delete(LIST *list, LIST_ACCESS_METHOD method, void *key, int (*comparison_function)(void *obj1, void *obj2))
+
+         Description
+
+            Removes a single element from a list previously initialized
+            with the constructor operation.  Elements may be deleted using
+            one of the following methods :
+
+            FIRST    - The first element in the list is removed.
+            LAST     - The last element in the list is removed.
+            NEXT     - The next element in the list relative to the current
+                       position is removed from the list.
+            PREVIOUS - The previous element in the list relative to the
+                       current position is removed from the list.
+            KEYED    - The first element that is found to match a
+                       user-specified key using a user-defined comparison
+                       function is removed from the list.
+            CURRENT  - The current element relative to the current position
+                       is removed from the list.
+            n        - The nth absolute element is removed from the list.
+
+         Parameters
+
+            list                - The list to delete an element from.
+            method              - The method of deletion.
+            key                 - The key used by the comparison function for
+                                  the keyed deletion method.
+	    comparison_function - The user-defined comparison function used
+				  for the keyed deletion method.
+				  Expects : obj1 = An exact copy of the
+						   parameter key.
+					    obj2 = The current element in
+						   the list.
+				  Returns : A value less than zero if obj1
+					    comes before the key found in
+					    obj2, a value of zero if obj1
+					    matches the key found in obj2,
+					    or a value greater than zero if
+					    obj1 comes after the key found
+					    in obj2.
+
+      5.  Retrieve(LIST *list, LIST_ACCESS_METHOD method, void *key, int (*comparison_function)(void *obj1, void *obj2))
+
+         Description
+
+            An element is retrieved for examination from a list previously
+            initialized with the constructor operation.  Elements may be
+            retrieved using one of the following methods :
+
+            FIRST    - The first element is retrieved.
+            LAST     - The last element is retrieved.
+            NEXT     - The next element relative to the current position is
+                       retrieved from the list.
+            PREVIOUS - The previous element relative to the current position
+                       is retrieved from the list.
+            KEYED    - The first element that is found to match a
+                       user-specified key by a user-defined comparison
+                       function is retrieved from the list.
+            CURRENT  - The current element relative to the current position
+                       is retrieved from the list.
+            n        - The nth absolute element is retrieved from the list.
+
+         Parameters
+
+            list                - The list to retrieve an element from.
+            method              - The method of retrieval.
+            key                 - The key used by the comparison function for
+                                  the keyed retrieval method.
+	    comparison_function - The user-defined comparison function used
+                                  for the keyed retrieval method.
+                                  Expects : obj1 = An exact copy of the
+                                                   parameter key.
+                                            obj2 = The current element in
+                                                   the list.
+                                  Returns : A value less than zero if obj1
+                                            comes before the key found in
+                                            obj2, a value of zero if obj1
+                                            matches the key found in obj2,
+                                            or a value greater than zero if
+                                            obj1 comes after the key found
+                                            in obj2.
+
+      6.  Copy(LIST *source_list, LIST_ACCESS_TYPE LIST *destination_list, LIST_ACCESS_METHOD method, unsigned long count, void *key, int (*comparison_function)(void *obj1, void *obj2))
+
+         Description
+
+            Copies the contents of one list to the another list.  Both lists
+            must have been previously initialized with the constructor
+            operation.  If the destination list was not empty, the elements
+            contained in the destination list were overwritten.  Lists may be
+            copies using one of the following methods :
+
+            FIRST    - The copy starts with the first element in the source
+                       list.
+            LAST     - The copy starts with the last element in the source
+                       list.  Note:  This copies only one element.
+            NEXT     - The copy starts with the next element relative to the
+                       current position in the list.
+            PREVIOUS - The copy starts with the previous element relative
+                       to the current position in the list.
+            KEYED    - Only those elements whose keys match the specified key
+                       are copied.
+            CURRENT  - The copy starts with the current element relative
+                       to the current position in the list.
+            n        - The copy starts with the nth absolute element in the
+                       list.
+         Parameters
+
+            source_list         - The source list.
+            destination_list    - The destination list.
+            method              - The copy method.
+            count               - The maximum number of elements to copy.
+            key                 - The key used by the comparison function for
+                                  the keyed copy method.
+	    comparison_function - The user-defined comparison function used
+                                  for the keyed copy method.
+                                  Expects : obj1 = An exact copy of the
+                                                   parameter key.
+                                            obj2 = The current element in
+                                                   the list.
+                                  Returns : A value less than zero if obj1
+                                            comes before the key found in
+                                            obj2, a value of zero if obj1
+                                            matches the key found in obj2,
+                                            or a value greater than zero if
+                                            obj1 comes after the key found
+                                            in obj2.
+
+
+      7.  Move(LIST *source_list, LIST_ACCESS_METHOD source_method, void *source_key, LIST *destination_list, LIST_ACCESS_METHOD destination_method, void *destination_key, unsigned long count, int (*comparison_function)(void *obj1, void *obj2))
+
+         Description
+
+            Moves the contents of the source list to the destination list.
+            The elements are removed from the source list and inserted into
+            the destination list.  Lists may be moved using one of the
+            following methods :
+
+	    Source Access Method
+
+               FIRST    - The move starts with the first element in the
+                          source list.
+               LAST     - The move starts with the last element in the
+                          source list.  Note:  This moves only one element.
+               NEXT     - The move starts with the next element relative to
+                          the current position in the source list.
+               PREVIOUS - the move starts with the previous element relative
+                          to the current position in the source list.
+               KEYED    - Only those elements whose key matches the source
+                          key are moved.
+               CURRENT  - The move starts with the current element relative
+                          to the current position in the source list.
+               n        - The move starts with the nth absolute element in
+                          the source list.
+
+            Destination Access Method
+
+               FIRST    - The moved elements are placed at the beginning of
+                          the destination list.
+               LAST     - The moved elements are placed at the end of the
+                          destination list.
+               NEXT     - The moved elements are placed immediately after the
+                          current element relative to the current position in
+                          the destination list.
+               PREVIOUS - The moved elements are placed immediately before
+                          the current element relative to the current
+                          position in the destination list.
+               KEYED    - The moved elements are placed immediately after the
+                          first element whose key matches the specified key
+                          in the destination list.
+               CURRENT  - The moved elements are placed in the current
+                          position in the list.
+               n        - The moved elements are placed starting at the nth
+                          absolute element in the destination list.
+
+
+         Parameters
+
+            source_list         - The source list.
+            source_method       - The source move access method.
+            source_key          - The source key.
+            destination_list    - The destination list.
+            destination_method  - The destination move access method.
+            destination_key     - The destination key.
+            count               - The maximum number of elements to move.
+	    comparison_function - The user-defined comparison function used
+                                  for the keyed move method.
+                                  Expects : obj1 = An exact copy of the
+                                                   parameter key.
+                                            obj2 = The current element in
+                                                   the list.
+                                  Returns : A value less than zero if obj1
+                                            comes before the key found in
+                                            obj2, a value of zero if obj1
+                                            matches the key found in obj2,
+                                            or a value greater than zero if
+                                            obj1 comes after the key found
+                                            in obj2.
+
+
+
+
+      8.  Append(LIST *source_list, LIST_ACCESS_METHOD source_method, void *source_key, LIST *destination_list, LIST_ACCESS_METHOD destination_method, void *destination_key, unsigned long count, int (*comparison_function)(void *obj1, void *obj2))
+
+         Description
+
+            Appends elements from the source list to the destination list.
+            This operation is similar to move except that it leaves the
+            source list unaltered.  Lists may be appended using one of the
+            following methods :
+
+            Source List Access Method
+
+               FIRST    - The append starts with the first element in the
+                          source list.
+               LAST     - The append starts with the last element in the
+                          source list.  Note:  This appends only one element.
+               NEXT     - The append starts with the next element relative
+                          to the current position in the source list.
+               PREVIOUS - The append starts with the previous element
+                          relative to the current position in the source
+                          list.
+               KEYED    - Only those elements in the source list whose key
+                          matches the source key are appended.
+               CURRENT  - The append start with the current element relative
+                          to the current position in the source list.
+               n        - The append starts with the nth absolute element
+                          in the source list.
+
+            Destination List Access Method
+
+               FIRST    - The appended data is placed at the beginning of
+                          the destination list.
+               LAST     - The appended data is placed at the end of the
+                          destination list.
+               NEXT     - The appended data is placed immediately after the
+                          current element relative to the current position
+                          in the destination list.
+               PREVIOUS - The appended data is placed immediately before the
+                          current element relative to the current position
+                          in the destination list.
+               KEYED    - The appended data is placed immediately after the
+                          first element in the destination list whose key
+                          matches the destination key.
+               CURRENT  - The appended data is placed at the current position
+                          in the destination list.
+               n        - The appended data is placed immediately before the
+                          nth absolute element in the destination list.
+
+
+         Parameters
+
+            source_list         - The source list.
+            source_method       - The source append access method.
+            source_key          - The source key.
+            destination_list    - The destination list.
+            destination_method  - The destination append access method.
+            destination_key     - The destination key.
+            count               - The maximum number of elements to append.
+	    comparison_function - The user-defined comparison function used
+                                  for the keyed append method.
+                                  Expects : obj1 = An exact copy of the
+                                                   parameter key.
+                                            obj2 = The current element in
+                                                   the list.
+                                  Returns : A value less than zero if obj1
+                                            comes before the key found in
+                                            obj2, a value of zero if obj1
+                                            matches the key found in obj2,
+                                            or a value greater than zero if
+                                            obj1 comes after the key found
+                                            in obj2.
+

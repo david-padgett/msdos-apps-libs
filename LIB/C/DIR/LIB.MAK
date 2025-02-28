@@ -1,0 +1,4 @@
++-DIR1 +-DIR1A +-DIR1B +-DIR1C +-DIR1D +-DIR2 +-DIR2A +-DIR3 +-DIR3A +-DIR3B &
++-DIR4
+
+

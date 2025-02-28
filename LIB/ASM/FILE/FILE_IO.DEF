@@ -1,0 +1,70 @@
+; File          : FILE_IO.DEF
+; Description   : Definition module for data structures associated with the
+;                 procedures in FILE_IO.ASM.
+; Last Modified : 12/21/89
+
+
+;
+; _FILE_????? are starting positions of each of the corresponding fields
+;    in _FILE.  These can be used to reference the fields when the struc
+;    has been passed as a pointer.
+
+_FILE_LEVEL    equ    0
+_FILE_FLAGS    equ    1
+_FILE_FD       equ    3
+_FILE_HOLD     equ    4
+_FILE_BSIZE    equ    5
+_FILE_BUFFER   equ    6
+_FILE_CURP     equ    8
+_FILE_ISTEMP   equ    10
+_FILE_TOKEN    equ    12
+
+;
+; _FILE is identical to the C struct FILE
+;
+
+_FILE              struc
+                   level     db     0
+                   flags     dw     0
+                   fd        db     0
+                   hold      db     0
+                   bsize     db     0
+                   buffer    dw     0
+                   curp      dw     0
+                   istemp    dw     0
+                   token     db     0
+_FILE              ends
+
+
+;
+; _FILE_TYPE????? are starting positions of each of the corresponding
+;    fields in _FILE_TYPE.  These can be used to reference the fields when
+;    the struc has been passed as a pointer.
+
+_FILE_TYPE_SPEC    equ    0
+_FILE_TYPE_ACCESS  equ    80
+_FILE_TYPE_HANDLE  equ    81
+_FILE_TYPE_MSG     equ    83
+_FILE_TYPE_BUFRSEG equ    85
+_FILE_TYPE_BUFROFS equ    87
+_FILE_TYPE_BUFRSIZE equ   89
+_FILE_TYPE_OFS     equ    91
+_FILE_TYPE_COUNT   equ    93
+_FILE_TYPE_ATTR    equ    95
+
+;
+; _FILE_TYPE is the data structure used to maintain information about files
+;    that are manipulated in programs.
+
+_FILE_TYPE         struc
+                   spec      db     80 dup(0)    ;filename: drive, path, etc.
+                   access    db     0            ;type of access to file
+                   handle    dw     0            ;file handle
+                   msg       dw     0            ;last error msg
+                   bufr      dw     0,0          ;seg:ofs of buffer
+                   bufr_size dw     0            ;size of buffer
+                   ofs       dw     0            ;offset into buffer
+                   count     dw     0            ;last # of bytes read/written
+                   attr      dw     0            ;file attribute
+_FILE_TYPE         ends
+

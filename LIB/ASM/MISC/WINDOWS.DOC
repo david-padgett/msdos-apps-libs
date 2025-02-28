@@ -1,0 +1,64 @@
+
+o Save text/attr underneath the window
+o allow windows to be moved (dragged)
+o non-destructive windows
+o borders or no borders
+o shadows or no shadows
+o exploding (type of explosion) or no exploding
+
+
+Function open_window(window)
+   If the window is not open, then
+      If the window is defined as non-destructive, then
+         If enough memory exists to allocate space for the window buffer, then
+            Allocate the memory needed for the window.  Create the window buffer.
+            Initialize the buffer.  Place the specified attribute in the attribute bytes, and place a SPACE in the character bytes.
+         Else
+	    An out of memory error occurred.  Inform the caller of this error.
+         Endif.
+      Endif.
+      If no error occurred, then
+         Mark the window as open.
+      Endif.
+   Endif.
+Endfunction.
+
+Procedure close_window(window)
+   If the window is open, then
+      If the window is active, then
+         Hide the window.
+      Endif.
+      If the window is defined as a non-destructive window, then
+         Deallocate the buffer.
+      Endif.
+      Mark the window as closed.
+      Reset the coordinates to the full screen, make the full screen active.
+   Endif.
+Endprocedure.
+
+Procedure display_window(window)
+   If the window is open, then
+      If the window is inactive, then
+         If the window is non-destructive, then
+            Swap the contents of the buffer with the contents of the affected portion of the screen.
+         Endif.
+         Replace the description of the current window with those of the newly selected window.
+         Mark the window as active.
+      Endif.
+   Endif.
+Endprocedure.
+
+Procedure hide_window(window)
+   If the window is open, then
+      If the window is active, then
+         If the window is non-destructive, then
+            Swap the contents of the buffer with the contents of the window being hidden.
+         Endif.
+         Mark the window as inactive.
+      Endif.
+   Endif.
+Endprocedure.
+
+Procedure switch_window
+Endprocedure.
+
