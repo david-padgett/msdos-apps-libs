@@ -1,0 +1,62 @@
+
+Quick Start Manual
+
+  To load a file, go to the File Menu and select LOAD, or press F2, then use
+  the arrow keys and ENTER to select the file to be loaded.
+
+  To save a file, go to the File Menu and select SAVE, or press F3.
+
+  To erase the file currently in memory, go to the File Menu and select NEW,
+  then select Yes to erase the file in memory or No to cancel.
+
+  To save a file using a different file name, go to the File Menu, and select
+  SAVE AS.
+
+  To delete a file, go to the File Menu and select DELETE, use the arrow keys
+  and ENTER to select the file to be deleted, then select either Yes to
+  proceed, or No to cancel.
+
+  To rename a file, go to the File Menu and select RENAME, use the arrow keys
+  and ENTER to select the file to be renamed.
+
+  To exit the program, press ESC at the Main Menu, or go to the File Menu and
+  select QUIT, then select either Yes to quit or No to cancel.
+
+  To Edit a new file or a file in memory, select Edit.
+
+  To Mark a field so that it will not be transmitted, press the F5 key while
+  the cursor is on the desired field.  This may also be accomplished by
+  placing the cursor on the field to be marked, then press ESC, then select
+  Edit, and finally select Mark in the Edit Menu.
+
+  To Clear a field so that it will be transmitted, press the F6 key while the
+  cursor is on the desired field.  This may also be accomplished by placing
+  the cursor on the field to be marked.  Then press ESC, then select Edit,
+  and finally select Clear in the Edit Menu.
+
+  To Send a file to the basic module, go to the Communications Menu and
+  select Send, or press F8.  Fill in the Unit number, then enter Y to save
+  the file permanently to the basic module, or press N to make the
+  transmission temporary.
+
+  Terminal mode currently serves no purpose.  The basic module software
+  which supports Terminal mode is not completed.
+
+  The Setup Menu is currently not used.  It will be removed as soon as
+  possible.
+
+  The Help Menu is not complete.  It will be completed as soon as possible.
+
+
+
+  To start the program, enter BMI on the DOS command line.
+
+  BMI has five command line parameters, they are:
+
+     /COLOR   - Set the program to use full color
+     /BW      - Set the program to use gray shading, easier to see on a
+                monochrome monitor
+     /LCD     - Set the program to use gray shading, easier to see on a
+                laptop.
+     /COM1    - Use comm port 1
+     /COM2    - Use comm port 2

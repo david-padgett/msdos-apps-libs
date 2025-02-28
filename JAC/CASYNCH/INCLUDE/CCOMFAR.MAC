@@ -1,0 +1,9 @@
+;
+;   Control for ASYNCH MANAGER	calling conventions
+;
+;   INTVEC is the interrupt vector to use if ASYNCH Level 0 functions
+;   have been installed as a resident runtime system.  If long calls
+;   are to be made to the Level 0 functions INTVEC is set to 0.
+;
+    INTVEC EQU 0
+

@@ -1,0 +1,11 @@
+c:\BorlandC\Lib\c0l.obj ..\CAsynch\asynch.obj +
+bmi0.obj bmi1.obj bmi2.obj bmi3.obj +
+,bmi.exe,,+
+..\CAsynch\TurboC\asy_tcl.lib ..\..\Lib\ASM\Cursor\cursor.lib +
+..\..\Lib\C\MSDos\msdos.lib ..\..\Lib\ASM\KB\kb.lib +
+..\..\Lib\C\Dir\Dir.lib ..\..\Lib\C\List\list.lib +
+..\..\Lib\C\Menu\menu.lib ..\..\Lib\C\Port\port.lib +
+..\..\Lib\ASM\Printer\printer.lib ..\..\Lib\C\String\string.lib +
+..\..\Lib\C\Text\text.lib ..\..\Lib\C\Text_Int\text_int.lib +
+c:\BorlandC\Lib\emu.lib c:\BorlandC\Lib\mathl.lib +
+c:\BorlandC\Lib\cl.lib

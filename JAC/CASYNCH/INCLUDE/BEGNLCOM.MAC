@@ -1,0 +1,44 @@
+;
+;   BEGINASM.OLD  -- Version of BEGINASM.MAC to support ASYNCH
+;		     version 1 and 2 segment names.
+;
+;   Version 5.00 (C)Copyright Blaise Computing Inc. 1987
+;
+;   Version 5.01  August 20, 1987  MEE
+;		  Added beginDSeg and endDSeg to define data segments.
+;
+;   Version 5.02  March 1, 1988  PLD
+;		  Adapted to generate ASYNCH version 1 and 2 segment
+;		  names.
+
+beginCseg macro sname	       ;;Begin code macro.
+    comcode	segment public 'COMCODE'
+    assume	cs:comcode
+    endm
+
+endCseg macro sname	       ;;End code macro.
+    comcode	ends
+    endm
+
+beginDSeg macro sname	       ;;Start a data segment
+    comdata	segment para public 'COMCODE'
+    assume	ds:comdata
+    endm
+
+endDSeg macro sname	       ;;End a data segment
+    comdata	ends
+    endm
+
+
+popff  macro			   ;; Simulate POPF instruction w/o bugs
+	local	do_call, do_iret
+	jmp	short do_call
+
+do_iret:
+	iret			   ;; Pop IP, CS, flags.
+
+do_call:
+	push   cs		   ;; Push CS
+	call   do_iret		   ;; Push IP & jump.
+	endm
+

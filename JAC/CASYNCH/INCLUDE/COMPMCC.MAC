@@ -1,0 +1,23 @@
+;
+;   COMPxxx.MAC --  Include file to set C compiler and model for
+;		    assembly language functions.
+;
+;   The following definitions specify the particular C Compiler
+;   used:
+;
+;	TC100	Turbo C v1.00 or later.
+;	MSC400	Microsoft C v4.00 or later.
+;
+;  Version 4.00 (C)Copyright Blaise Computing Inc.  1987
+;
+
+MSC400	 EQU	1
+TC100	 EQU	0
+
+BCOMPACT equ	1
+BHUGE	 equ	0
+BLARGE	 equ	0
+BMEDIUM  equ	0
+BSMALL	 equ	0
+BTINY	 equ	0
+
