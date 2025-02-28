@@ -1,0 +1,6 @@
+c:\borlandc\lib\c0l.obj +
+xdel.obj +
+,xdel.exe,,+
+..\..\lib\c\dir\dir.lib ..\..\lib\c\msdos\msdos.lib ..\..\lib\c\list\list.lib +
+c:\borlandc\lib\emu.lib c:\borlandc\lib\mathl.lib c:\borlandc\lib\cl.lib
+

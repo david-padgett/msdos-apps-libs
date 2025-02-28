@@ -1,0 +1,6 @@
+c:\borlandc\lib\c0l.obj +
+treedir.obj +
+,treedir.exe,, +
+..\..\lib\c\dir\dir.lib +
+c:\borlandc\lib\emu.lib c:\borlandc\lib\mathl.lib c:\borlandc\lib\cl.lib
+

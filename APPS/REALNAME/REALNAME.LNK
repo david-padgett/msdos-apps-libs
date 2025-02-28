@@ -1,0 +1,6 @@
+c:\borlandc\lib\c0l.obj +
+realname.obj +
+,realname.exe,,+
+..\..\lib\c\msdos\msdos.lib +
+c:\borlandc\lib\emu.lib c:\borlandc\lib\mathl.lib c:\borlandc\lib\cl.lib
+

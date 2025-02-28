@@ -1,0 +1,6 @@
+c:\borlandc\lib\c0l +
+prime.obj +
+,prime.exe,, +
+..\..\lib\asm\kb\kb.lib ..\..\lib\c\list\list.lib ..\..\lib\c\string\string.lib +
+c:\borlandc\lib\emu.lib c:\borlandc\lib\mathl.lib c:\borlandc\lib\cl.lib
+

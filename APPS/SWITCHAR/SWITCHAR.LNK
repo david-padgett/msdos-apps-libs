@@ -1,0 +1,5 @@
+c:\borlandc\lib\c0l.obj +
+switchar.obj +
+,switchar.exe,,+
+..\..\lib\c\msdos\msdos.lib +
+c:\borlandc\lib\emu.lib c:\borlandc\lib\mathl.lib c:\borlandc\lib\cl.lib

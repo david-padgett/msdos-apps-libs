@@ -1,0 +1,6 @@
+c:\borlandc\lib\c0l.obj +
+reminder.obj +
+,reminder.exe,,+
+..\..\lib\c\date\date.lib ..\..\lib\c\msdos\msdos.lib ..\..\lib\c\list\list.lib ..\..\lib\c\port\port.lib ..\..\lib\c\string\string.lib ..\..\lib\c\text\text.lib ..\..\lib\c\text_int\text_int.lib +
+c:\borlandc\lib\emu.lib c:\borlandc\lib\mathl.lib +
+c:\borlandc\lib\cl.lib
